@@ -20,7 +20,13 @@
         <div class="col-2"></div>
         <div class="col-8">
             <table class="table">
-                <tr><td>Topshiriq</td><td>Vaqti</td><td>Holati (bajarildi,bajarilmadi)</td></tr>
+                <tr><td>Topshiriq</td><td>Holati (bajarildi,bajarilmadi)</td></tr>
+                
+                {% for todo in todos %}
+                <tr><td>{{todo.id}}.{{todo.title}}</td><td>{{todo.status}}</td></tr>
+                    
+                {% endfor %}
+                    
             </table>
         </div>
         <div class="col-2"></div>
