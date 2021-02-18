@@ -25,11 +25,19 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+
+        <li>
+          <a class="nav-link">Bosh sahifa -></a>
+        </li>
+        <li>
+          <a href="{% url 'todoapp:index'%}" class="nav-link btn-success">Bosh sahifa</a>
+        </li>
+
         <li class="nav-item active">
           <a class="nav-link">Chiqish -> </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-danger" href="/logout/">Chiqish</a>
+          <a class="nav-link btn btn-danger" href="/logout/">Logout</a>
         </li>
       </ul>
     </div>
@@ -38,15 +46,7 @@
 <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
-        <table class="table">
-            <tr><td>Topshiriq</td><td>Holati (bajarildi,bajarilmadi)</td></tr>
-            
-            {% for todo in todos %}
-            <tr><td>{{todo.id}}.{{todo.title}}</td><td>{% if todo.status%} <i class="fa fa-check"></i> {% else %} <i class="fa fa-window-close"></i> {% endif%}</td></tr>
-                
-            {% endfor %}
-                
-        </table>
+                <h1>Xush kelibsiz, {{user.username}}</h1>
     </div>
     <div class="col-2"></div>
 </div>

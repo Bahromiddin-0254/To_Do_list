@@ -6,4 +6,5 @@ app_name = 'todoapp'
 urlpatterns = [
     path('',index,name='index'),
     path('profile/',profile,name='profile'),
+    path('new/',new,name='new'),
 ]

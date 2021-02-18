@@ -1,8 +1,11 @@
 {% extends "account/base.html" %}
-
+{% extends "base.html"%}
 {% load i18n %}
 {% load account %}
 
+{% block todo_m %}
+  
+  
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
@@ -23,5 +26,7 @@
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
 </form>
+
+{% endblock %}
 
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+
+{% block todo_m %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">{{todo.id}}{{todo.name}}</div><i class="fa fa-trash"><form action="" method="post"><button type="submit"></button></form></i>
+        <div class="col-2"></div>
+    </div>
+{% endblock %}
+    

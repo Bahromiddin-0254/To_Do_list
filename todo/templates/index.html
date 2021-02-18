@@ -42,7 +42,7 @@
             <tr><td>Topshiriq</td><td>Holati (bajarildi,bajarilmadi)</td></tr>
             
             {% for todo in todos %}
-            <tr><td>{{todo.id}}.{{todo.title}}</td><td>{% if todo.status%} <i class="fa fa-check"></i> {% else %} <i class="fa fa-window-close"></i> {% endif%}</td></tr>
+            <tr><td>{{todo.id}}.{{todo.title}}</td><td>{% if todo.status%} <i class="fa fa-check"></i> {% else %} <i class="fa fa-window-close"></i> {% endif%}</td><td><a class="btn btn-outline-success" href="{%url 'todoapp:new'%}">New</a></td></tr>
                 
             {% endfor %}
                 
