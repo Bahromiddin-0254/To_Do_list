@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Todo
 from .forms import TodoForm
 from django.contrib import messages
@@ -21,17 +21,29 @@ def profile(request):
     return render(request,'profile.html')
 @login_required
 def new(request):
-    user =User.objects.filter(username=request.user)
     if request.method=='POST':
         form=TodoForm(request.POST,request.FILES)
-        form.user=user
-        form.status=False
         if form.is_valid:
-            form.save()
-            HttpResponseRedirect(reverse('todoapp:index'))
+            newtodo=Todo(user=request.user,title=request.POST['title'],status=False)
+            newtodo.save()
+            return HttpResponseRedirect(reverse('todoapp:index',))
         else:
-            return HttpResponseRedirect(reverse('todoapp:new' ))
+            return HttpResponseRedirect(reverse('todoapp:index', ))
+            
     else:
         form=TodoForm()
+            
+        
     context={'form':form}
     return render(request,'new.html',context)
+
+def edit(request,todo_id):
+    todo = get_object_or_404(Todo,id=todo_id)
+    todo.status = True
+    todo.save()
+    return HttpResponseRedirect(reverse('todoapp:index'))
+def delete(request,todo_id):
+    todo = get_object_or_404(Todo,id=todo_id)
+    todo.delete()
+    return HttpResponseRedirect(reverse('todoapp:index'))
+    

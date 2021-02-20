@@ -3,29 +3,38 @@
 {% load account %}
 
 {% block todo_m %}
-  
-  
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block head_title %} <p class="d-none">"Sign In"</a> {% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="row">
+  <col-4>
+</col-4>
+<div class="col-4">
+</div>
+<div class="col-4">
+  <h1>{% trans "Sign In" %}</h1>
 
 
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  <p class="text">{% blocktrans %}If you have not created an account yet, then please
+  <a href="{{ signup_url }}" class="btn-link">sign up</a> first.{% endblocktrans %}</p>
+  
+  
+  <form class="login form-group" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    <button class="primaryAction btn btn-success" type="submit">{% trans "Sign In" %}</button>
+  </form>
+  
+  {% endblock %}
+  
+</div>
+<div class="col-4"></div>
+</div>
 
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
-
-{% endblock %}
 
 {% endblock %}
